@@ -1,0 +1,24 @@
+module snake_game(out,d,clr,clk);
+
+input [3:0] d; //directions
+//u d l r
+input clr,clk; //reset the game
+output reg out = 1'b0; 
+
+parameter A=3'b000, B=3'b001, C=3'b010, D=3'b011, E=3'b100, F=3'b101, G=3'b110; 
+
+reg [2:0] state=E;
+
+always @ (posedge clk)
+begin 
+    if (clr == 1'b1) state <= E;
+    else
+     if (d[2] & d[0] & (state== E)) state <= D;
+     else if (d[3] & d[0] & (state== D)) state <= C;
+     else if (d[3] & (state== C)) state <= B;
+     else if (d[3] & d[1] & (state== B)) state <= A;
+     else if (d[2] & d[1] & (state== A)) state <= F;         
+     else if (d[2] & d[0] & (state== F)) out=1'b1;
+     else state <=E;
+end
+endmodule
