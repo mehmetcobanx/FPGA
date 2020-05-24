@@ -1,0 +1,22 @@
+`timescale 1ns / 1ps
+
+
+  module Part1(             input [11:0] sw_sub,
+                           input [11:0] password,
+                           output reg [15:0] led_sub,
+                           output reg locked
+        );
+      
+         
+        always@(sw_sub) begin
+         
+          if (password==sw_sub) begin
+              led_sub[15:0]<={4'b1000,sw_sub};
+              locked=0;
+          end
+          else begin
+              led_sub[15:0]<={4'b0000,sw_sub};
+              locked=1;
+          end    
+         end
+    
