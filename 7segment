@@ -1,4 +1,4 @@
-odule Binary_To_7Segment 
+module Binary_To_7Segment 
   (
    input       i_Clk,
    input [3:0] i_Binary_Num,
